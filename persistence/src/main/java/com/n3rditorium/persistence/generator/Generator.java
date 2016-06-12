@@ -16,6 +16,20 @@ public class Generator {
       System.exit(0);
    }
 
+   private static void createDeedEntitiy(Schema schema) {
+      final Entity deed = schema.addEntity("DeedDB");
+
+      deed.addIdProperty()
+            .autoincrement();
+      deed.addLongProperty("dogId");
+      deed.addIntProperty("type");
+      deed.addStringProperty("description");
+      deed.addBooleanProperty("inside");
+      deed.addLongProperty("timestamp");
+      deed.addLongProperty("latitude");
+      deed.addLongProperty("longitude");
+   }
+
    private static void createDogEntity(Schema schema) {
       final Entity dog = schema.addEntity("DogDB");
 
@@ -36,6 +50,7 @@ public class Generator {
       // create entities:
       createDogEntity(schema);
       createMetricEntity(schema);
+      createDeedEntitiy(schema);
 
       DaoGenerator daoGenerator;
       try {

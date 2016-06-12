@@ -2,19 +2,13 @@ package com.n3rditorium.pocketdoggie.buisness;
 
 import java.util.List;
 
-public interface BuisnessObject<Item, DatabaseEntry> {
-
-   DatabaseEntry buildForDatabase(Item item);
-
-   Item buildFromDatabase(DatabaseEntry entry);
+public interface BuisnessObject<Item> {
 
    void delete(Item item);
 
-   List<Item> loadAllFromDatabase();
+   List<Item> loadAll();
 
-   void persistEntry(DatabaseEntry entry);
+   void save(Item item);
 
-   void persistItem(Item item);
-
-   void updateEntry(DatabaseEntry entry);
+   void update(Item entry);
 }

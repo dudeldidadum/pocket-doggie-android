@@ -8,7 +8,7 @@ public class Metric {
    public static final int UNIT_KILOMETERS = 102;
    public static final int UNIT_METERS = 101;
    private Long dogId;
-   private Long id;
+   private String uid;
    private Long timestamp;
    private Integer unit;
    private Integer value;
@@ -35,12 +35,12 @@ public class Metric {
       return this;
    }
 
-   public Long getId() {
-      return id;
+   public String getUid() {
+      return uid;
    }
 
-   public Metric setId(long id) {
-      this.id = id;
+   public Metric setUid(String uid) {
+      this.uid = uid;
       return this;
    }
 

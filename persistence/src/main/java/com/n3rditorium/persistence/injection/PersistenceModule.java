@@ -6,10 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.n3rditorium.persistence.databse.DatabaseHelper;
 import com.n3rditorium.pocketdoggie.persistence.DaoMaster;
 import com.n3rditorium.pocketdoggie.persistence.DaoSession;
+import com.n3rditorium.pocketdoggie.persistence.DeedDBDao;
 import com.n3rditorium.pocketdoggie.persistence.DogDBDao;
 import com.n3rditorium.pocketdoggie.persistence.MetricDBDao;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,13 +16,23 @@ import dagger.Provides;
 @Module
 public class PersistenceModule {
 
+   private final Context context;
+
+   public PersistenceModule(Context context) {
+      this.context = context;
+   }
+
    @Provides
-   @Singleton
-   DaoSession provideDaoSession(final Context context) {
+   DaoSession provideDaoSession() {
       final DaoMaster.OpenHelper helper = new DatabaseHelper(context, null);
       final SQLiteDatabase db = helper.getWritableDatabase();
       final DaoMaster daoMaster = new DaoMaster(db);
       return daoMaster.newSession();
+   }
+
+   @Provides
+   DeedDBDao provideDeedDBDao(final DaoSession session) {
+      return session.getDeedDBDao();
    }
 
    @Provides

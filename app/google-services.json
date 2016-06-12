@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "888073834648",
+    "firebase_url": "https://pocket-doggie.firebaseio.com",
+    "project_id": "pocket-doggie",
+    "storage_bucket": "pocket-doggie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888073834648:android:5c6fb79f1335f4b2",
+        "android_client_info": {
+          "package_name": "com.n3rditorium.pocketdoggie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888073834648-me38hfqs3hh2jk2aere0c6sr2mgn1m5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.n3rditorium.pocketdoggie",
+            "certificate_hash": "C9D8357305C2E8785C77324810159BA2B701BD95"
+          }
+        },
+        {
+          "client_id": "888073834648-322crdepvpqm2bdghfitbj7nvmlvio13.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB23yn4UUi56rhw9pYqM3P6WFiNZgE8E5k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888073834648-322crdepvpqm2bdghfitbj7nvmlvio13.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

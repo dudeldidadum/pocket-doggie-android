@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -19,6 +22,17 @@ public class ApplicationModule {
    @Provides
    Context provideContext() {
       return context;
+   }
+
+   @Provides
+   DatabaseReference provideDatabaseReference() {
+      return FirebaseDatabase.getInstance()
+            .getReference();
+   }
+
+   @Provides
+   FirebaseDatabase provideFirebaseDatabase() {
+      return FirebaseDatabase.getInstance();
    }
 
    @Provides

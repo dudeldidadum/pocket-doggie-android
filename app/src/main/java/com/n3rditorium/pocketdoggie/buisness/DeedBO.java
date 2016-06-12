@@ -2,40 +2,38 @@ package com.n3rditorium.pocketdoggie.buisness;
 
 import com.google.firebase.database.DatabaseReference;
 import com.n3rditorium.pocketdoggie.injection.Injector;
-import com.n3rditorium.pocketdoggie.models.Dog;
+import com.n3rditorium.pocketdoggie.models.Deed;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class DogBO implements BuisnessObject<Dog> {
+public class DeedBO implements BuisnessObject<Deed> {
 
    @Inject
-   DatabaseReference databaseReference;
+   DatabaseReference database;
 
-   public DogBO() {
+   public DeedBO() {
       Injector.getAppComponent()
             .inject(this);
    }
 
    @Override
-   public void delete(Dog dog) {
-
+   public void delete(Deed deed) {
    }
 
    @Override
-   public List<Dog> loadAll() {
+   public List<Deed> loadAll() {
       return null;
    }
 
    @Override
-   public void save(Dog dog) {
-      databaseReference.child("dogs")
-            .setValue(dog);
+   public void save(Deed deed) {
+
    }
 
    @Override
-   public void update(Dog dog) {
+   public void update(Deed deed) {
 
    }
 }

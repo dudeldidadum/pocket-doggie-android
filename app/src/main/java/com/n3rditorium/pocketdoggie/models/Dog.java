@@ -1,15 +1,22 @@
 package com.n3rditorium.pocketdoggie.models;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Dog {
 
    private Long birthday;
    private String description;
    private Metric height;
-   private Long id;
    private String identifier;
    private Image image;
    private String name;
+   private String uid;
    private Metric weight;
+
+   public Dog() {
+      // Default constructor required for calls to DataSnapshot.getValue(User.class)
+   }
 
    public Long getBirthday() {
       return birthday;
@@ -38,15 +45,6 @@ public class Dog {
       return this;
    }
 
-   public Long getId() {
-      return id;
-   }
-
-   public Dog setId(Long id) {
-      this.id = id;
-      return this;
-   }
-
    public String getIdentifier() {
       return identifier;
    }
@@ -71,6 +69,15 @@ public class Dog {
 
    public Dog setName(String name) {
       this.name = name;
+      return this;
+   }
+
+   public String getUid() {
+      return uid;
+   }
+
+   public Dog setUid(String uid) {
+      this.uid = uid;
       return this;
    }
 
