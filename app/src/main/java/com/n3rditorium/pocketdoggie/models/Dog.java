@@ -2,13 +2,16 @@ package com.n3rditorium.pocketdoggie.models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @IgnoreExtraProperties
 public class Dog {
 
    private Long birthday;
    private String description;
+   private Integer gender;
    private Metric height;
-   private String identifier;
    private Image image;
    private String name;
    private String uid;
@@ -36,21 +39,21 @@ public class Dog {
       return this;
    }
 
+   public Integer getGender() {
+      return gender;
+   }
+
+   public Dog setGender(Integer gender) {
+      this.gender = gender;
+      return this;
+   }
+
    public Metric getHeight() {
       return height;
    }
 
    public Dog setHeight(Metric height) {
       this.height = height;
-      return this;
-   }
-
-   public String getIdentifier() {
-      return identifier;
-   }
-
-   public Dog setIdentifier(String identifier) {
-      this.identifier = identifier;
       return this;
    }
 
@@ -88,5 +91,18 @@ public class Dog {
    public Dog setWeight(Metric weight) {
       this.weight = weight;
       return this;
+   }
+
+   public Map<String, Object> toMap() {
+      Map<String, Object> result = new HashMap<>();
+      result.put("uid", uid);
+      result.put("name", name);
+      result.put("description", description);
+      result.put("birthday", birthday);
+      result.put("gender", gender);
+      result.put("height_in_cm", height.getValue());
+      result.put("weight_in_g", weight.getValue());
+
+      return result;
    }
 }

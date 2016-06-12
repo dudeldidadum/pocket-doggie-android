@@ -32,6 +32,11 @@
          android:name=".signin.SignInActivity"
          android:label="@string/title_activity_sign_in">
       </activity>
+      <activity
+         android:name=".dog.DogActivity"
+         android:label="@string/title_activity_dog"
+         android:theme="@style/AppTheme.NoActionBar">
+      </activity>
    </application>
 
 </manifest>

@@ -21,16 +21,45 @@ import javax.inject.Inject;
 
 public class FirebaseController extends AbstractController {
 
+   public interface OnUserListener {
+
+      void notSignedIn();
+
+      void onSignedIn(FirebaseUser user);
+   }
+
    private static final String TAG = FirebaseController.class.getSimpleName();
    @Inject
    FirebaseAuth firebaseAuth;
    private FirebaseAuth.AuthStateListener authListener;
+
+   public void getCurrentUser(final OnUserListener listener) {
+      authListener = new FirebaseAuth.AuthStateListener() {
+         @Override
+         public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+               // User is signed in
+               Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+               listener.onSignedIn(user);
+            } else {
+               // User is signed out
+               Log.d(TAG, "onAuthStateChanged:signed_out");
+               listener.notSignedIn();
+            }
+         }
+      };
+   }
 
    @Override
    public void init(AppCompatActivity activity) {
       this.activity = activity;
       Injector.getAppComponent()
             .inject(this);
+   }
+
+   public void logout() {
+      firebaseAuth.signOut();
    }
 
    @Override

@@ -23,12 +23,12 @@ public class DeedBO implements BuisnessObject<Deed> {
    }
 
    @Override
-   public List<Deed> loadAll() {
+   public List<Deed> loadAll(String userToken) {
       return null;
    }
 
    @Override
-   public void save(Deed deed) {
+   public void save(String userToken, Deed deed) {
 
    }
 

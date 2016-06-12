@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,6 +34,11 @@ public class ApplicationModule {
    @Provides
    FirebaseDatabase provideFirebaseDatabase() {
       return FirebaseDatabase.getInstance();
+   }
+
+   @Provides
+   Picasso providePicasso(Context context) {
+      return Picasso.with(context);
    }
 
    @Provides

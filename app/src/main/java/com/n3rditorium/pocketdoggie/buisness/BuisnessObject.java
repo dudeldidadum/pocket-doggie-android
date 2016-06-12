@@ -6,9 +6,9 @@ public interface BuisnessObject<Item> {
 
    void delete(Item item);
 
-   List<Item> loadAll();
+   List<Item> loadAll(String userToken);
 
-   void save(Item item);
+   void save(String userToken, Item item);
 
    void update(Item entry);
 }

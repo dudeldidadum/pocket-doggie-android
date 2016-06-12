@@ -10,14 +10,30 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.n3rditorium.pocketdoggie.dog.DogActivity;
+import com.n3rditorium.pocketdoggie.images.CircleTransformation;
+import com.n3rditorium.pocketdoggie.injection.Injector;
+import com.n3rditorium.pocketdoggie.signin.FirebaseController;
 import com.n3rditorium.pocketdoggie.signin.SignInActivity;
+import com.squareup.picasso.Picasso;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity
       implements NavigationView.OnNavigationItemSelectedListener {
+
+   @Inject
+   FirebaseController firebaseController;
+   @Inject
+   Picasso picasso;
 
    @Override
    public void onBackPressed() {
@@ -42,19 +58,17 @@ public class MainActivity extends AppCompatActivity
       // Handle navigation view item clicks here.
       int id = item.getItemId();
 
-      if (id == R.id.nav_sign_in) {
+      if (id == R.id.nav_profile) {
          // Handle the camera action
          startActivity(new Intent(this, SignInActivity.class));
-      } else if (id == R.id.nav_gallery) {
-
-      } else if (id == R.id.nav_slideshow) {
-
-      } else if (id == R.id.nav_manage) {
+      } else if (id == R.id.nav_dog_profile) {
+         startActivity(new Intent(this, DogActivity.class));
+      } else if (id == R.id.nav_deeds) {
 
       } else if (id == R.id.nav_share) {
 
-      } else if (id == R.id.nav_send) {
-
+      } else if (id == R.id.nav_logout) {
+         firebaseController.logout();
       }
 
       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -80,9 +94,29 @@ public class MainActivity extends AppCompatActivity
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
+      Injector.getAppComponent()
+            .inject(this);
       setContentView(R.layout.main_activity);
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       setSupportActionBar(toolbar);
+
+      firebaseController.init(this);
+      firebaseController.onCreate(savedInstanceState);
+      firebaseController.getCurrentUser(new FirebaseController.OnUserListener() {
+         @Override
+         public void notSignedIn() {
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+         }
+
+         @Override
+         public void onSignedIn(FirebaseUser user) {
+            Log.i("User", "name:  " + user.getDisplayName());
+            Log.i("User", "email: " + user.getEmail());
+            Log.i("User", "photo: " + user.getPhotoUrl());
+            Log.i("User", "uid:   " + user.getUid());
+            updateNavigationView(user);
+         }
+      });
 
       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
       fab.setOnClickListener(new View.OnClickListener() {
@@ -103,5 +137,36 @@ public class MainActivity extends AppCompatActivity
 
       NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
       navigationView.setNavigationItemSelectedListener(this);
+   }
+
+   @Override
+   protected void onStart() {
+      super.onStart();
+      firebaseController.onStart();
+   }
+
+   @Override
+   protected void onStop() {
+      super.onStop();
+      firebaseController.onStop();
+   }
+
+   private void updateNavigationView(FirebaseUser user) {
+      NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+      View headerView = navigationView.getHeaderView(0);
+      ImageView avatar = (ImageView) headerView.findViewById(R.id.img_avatar);
+      if (avatar != null) {
+         picasso.load(user.getPhotoUrl())
+               .transform(new CircleTransformation())
+               .into(avatar);
+      }
+      TextView name = (TextView) headerView.findViewById(R.id.txt_name);
+      if (name != null) {
+         name.setText(user.getDisplayName());
+      }
+      TextView mail = (TextView) headerView.findViewById(R.id.txt_mail);
+      if (mail != null) {
+         mail.setText(user.getEmail());
+      }
    }
 }

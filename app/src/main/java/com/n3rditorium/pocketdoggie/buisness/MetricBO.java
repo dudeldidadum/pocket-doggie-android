@@ -28,12 +28,12 @@ public class MetricBO implements BuisnessObject<Metric> {
    }
 
    @Override
-   public List<Metric> loadAll() {
+   public List<Metric> loadAll(String userToken) {
       return null;
    }
 
    @Override
-   public void save(Metric metric) {
+   public void save(String userToken, Metric metric) {
 
    }
 
