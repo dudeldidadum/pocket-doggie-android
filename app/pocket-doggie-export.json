@@ -1,0 +1,24 @@
+{
+  "dogs" : {
+    "-KK5H7M0MwwnbVvZcLdX" : {
+      "description" : "Bayerischer Gebirgsschweißhund und Altdeutscher Hirtehund Mix",
+      "gender" : 0,
+      "height_in_cm" : 37,
+      "name" : "Penny",
+      "uid" : "-KK5H7M0MwwnbVvZcLdX",
+      "weight_in_g" : 9000
+    }
+  },
+  "user-dogs" : {
+    "Mgr59WZhxrRyyNtNqd2aZgdIudd2" : {
+      "-KK5H7M0MwwnbVvZcLdX" : {
+        "description" : "Bayerischer Gebirgsschweißhund und Altdeutscher Hirtehund Mix",
+        "gender" : 0,
+        "height_in_cm" : 37,
+        "name" : "Penny",
+        "uid" : "-KK5H7M0MwwnbVvZcLdX",
+        "weight_in_g" : 9000
+      }
+    }
+  }
+}

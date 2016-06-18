@@ -14,6 +14,14 @@
          android:id="@+id/nav_deeds"
          android:icon="@drawable/ic_menu_poop"
          android:title="A dog's deeds" />
+      <item
+         android:id="@+id/nav_foods"
+         android:icon="@drawable/ic_bone"
+         android:title="Nom nom" />
+      <item
+         android:id="@+id/nav_walks"
+         android:icon="@drawable/ic_run"
+         android:title="Walks" />
    </group>
 
    <item android:title="Communicate">

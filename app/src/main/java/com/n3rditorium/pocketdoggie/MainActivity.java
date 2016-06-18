@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.n3rditorium.pocketdoggie.dog.DogActivity;
 import com.n3rditorium.pocketdoggie.images.CircleTransformation;
 import com.n3rditorium.pocketdoggie.injection.Injector;
+import com.n3rditorium.pocketdoggie.models.ADogDeedsActivity;
 import com.n3rditorium.pocketdoggie.signin.FirebaseController;
 import com.n3rditorium.pocketdoggie.signin.SignInActivity;
 import com.squareup.picasso.Picasso;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity
    FirebaseController firebaseController;
    @Inject
    Picasso picasso;
+
 
    @Override
    public void onBackPressed() {
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity
       } else if (id == R.id.nav_dog_profile) {
          startActivity(new Intent(this, DogActivity.class));
       } else if (id == R.id.nav_deeds) {
-
+         startActivity(new Intent(this, ADogDeedsActivity.class));
       } else if (id == R.id.nav_share) {
 
       } else if (id == R.id.nav_logout) {

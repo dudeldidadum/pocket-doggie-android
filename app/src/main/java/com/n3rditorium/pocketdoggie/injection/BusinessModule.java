@@ -1,7 +1,7 @@
 package com.n3rditorium.pocketdoggie.injection;
 
+import com.n3rditorium.pocketdoggie.buisness.DeedBO;
 import com.n3rditorium.pocketdoggie.buisness.DogBO;
-import com.n3rditorium.pocketdoggie.buisness.MetricBO;
 
 import dagger.Module;
 import dagger.Provides;
@@ -10,12 +10,12 @@ import dagger.Provides;
 public class BusinessModule {
 
    @Provides
-   DogBO provideDogBO() {
-      return new DogBO();
+   DeedBO provideDeedBo() {
+      return new DeedBO();
    }
 
    @Provides
-   MetricBO provideMetricBo() {
-      return new MetricBO();
+   DogBO provideDogBO() {
+      return new DogBO();
    }
 }

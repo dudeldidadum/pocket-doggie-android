@@ -2,4 +2,7 @@
 
    <string name="facebook_app_id">1743302825885525</string>
    <string name="google_web_client_id">888073834648-322crdepvpqm2bdghfitbj7nvmlvio13.apps.googleusercontent.com</string>
+
+   <string name="roboto_light">sans-serif-light</string>
+   <string name="roboto_medium">sans-serif-medium</string>
 </resources>

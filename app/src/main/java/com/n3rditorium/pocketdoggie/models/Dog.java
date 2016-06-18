@@ -11,11 +11,11 @@ public class Dog {
    private Long birthday;
    private String description;
    private Integer gender;
-   private Metric height;
+   private Integer height;
    private Image image;
    private String name;
-   private String uid;
-   private Metric weight;
+   private String key;
+   private Integer weight;
 
    public Dog() {
       // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -48,11 +48,11 @@ public class Dog {
       return this;
    }
 
-   public Metric getHeight() {
+   public Integer getHeight() {
       return height;
    }
 
-   public Dog setHeight(Metric height) {
+   public Dog setHeight(Integer height) {
       this.height = height;
       return this;
    }
@@ -75,33 +75,33 @@ public class Dog {
       return this;
    }
 
-   public String getUid() {
-      return uid;
+   public String getKey() {
+      return key;
    }
 
-   public Dog setUid(String uid) {
-      this.uid = uid;
+   public Dog setKey(String key) {
+      this.key = key;
       return this;
    }
 
-   public Metric getWeight() {
+   public Integer getWeight() {
       return weight;
    }
 
-   public Dog setWeight(Metric weight) {
+   public Dog setWeight(Integer weight) {
       this.weight = weight;
       return this;
    }
 
    public Map<String, Object> toMap() {
       Map<String, Object> result = new HashMap<>();
-      result.put("uid", uid);
+      result.put("key", key);
       result.put("name", name);
       result.put("description", description);
       result.put("birthday", birthday);
       result.put("gender", gender);
-      result.put("height_in_cm", height.getValue());
-      result.put("weight_in_g", weight.getValue());
+      result.put("height_in_cm", height);
+      result.put("weight_in_g", weight);
 
       return result;
    }

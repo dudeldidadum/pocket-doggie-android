@@ -21,4 +21,11 @@
       completions."
    </string>
    <string name="title_activity_dog">Add your dog</string>
+   <string name="title_activity_adog_deeds">Your Dog\'s deeds</string>
+
+   <string name="prompt_comment">Comment</string>
+   <!-- TRANSITIONS -->
+   <string name="transition_add_a_deed"
+      translatable="false">transition_add_a_deed
+   </string>
 </resources>

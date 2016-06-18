@@ -13,7 +13,7 @@
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
       android:supportsRtl="true"
-      android:theme="@style/AppTheme">
+      android:theme="@style/Doggie">
       <meta-data
          android:name="com.facebook.sdk.ApplicationId"
          android:value="@string/facebook_app_id" />
@@ -21,7 +21,7 @@
       <activity
          android:name=".MainActivity"
          android:label="@string/app_name"
-         android:theme="@style/AppTheme.NoActionBar">
+         android:theme="@style/Doggie.NoActionBar">
          <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +35,15 @@
       <activity
          android:name=".dog.DogActivity"
          android:label="@string/title_activity_dog"
-         android:theme="@style/AppTheme.NoActionBar">
+         android:theme="@style/Doggie.NoActionBar">
+      </activity>
+      <activity
+         android:name=".models.ADogDeedsActivity"
+         android:label="@string/title_activity_adog_deeds"
+         android:theme="@style/Doggie.NoActionBar">
+      </activity>
+      <activity android:name=".dog.deeds.AddADeedActivity"
+         android:theme="@style/Doggie.NoActionBar.Translucent.AddADeed">
       </activity>
    </application>
 
