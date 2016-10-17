@@ -40,6 +40,13 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
+              "client_id": "888073834648-6pj1t8a6ct04oj7u6e8vhsogkpmdr4k7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mathiasnagler.FirebaseTest"
+              }
+            },
+            {
               "client_id": "888073834648-322crdepvpqm2bdghfitbj7nvmlvio13.apps.googleusercontent.com",
               "client_type": 3
             }

@@ -1,9 +1,9 @@
 package com.n3rditorium.pocketdoggie.injection;
 
-import com.n3rditorium.persistence.injection.PersistenceModule;
 import com.n3rditorium.pocketdoggie.MainActivity;
 import com.n3rditorium.pocketdoggie.buisness.DeedBO;
 import com.n3rditorium.pocketdoggie.buisness.DogBO;
+import com.n3rditorium.pocketdoggie.core.BaseApplication;
 import com.n3rditorium.pocketdoggie.dog.DogActivity;
 import com.n3rditorium.pocketdoggie.dog.deeds.AddADeedActivity;
 import com.n3rditorium.pocketdoggie.models.ADogDeedsActivity;
@@ -11,10 +11,12 @@ import com.n3rditorium.pocketdoggie.signin.FirebaseController;
 import com.n3rditorium.pocketdoggie.signin.SignInActivity;
 import com.n3rditorium.pocketdoggie.signin.SignInModule;
 
+import javax.inject.Singleton;
+
 import dagger.Component;
 
-@Component (modules = { ApplicationModule.class, BusinessModule.class, PersistenceModule.class,
-      SignInModule.class })
+@Singleton
+@Component (modules = { ApplicationModule.class, BusinessModule.class, SignInModule.class })
 public interface AppComponent {
 
    void inject(DogBO dogBO);
@@ -32,4 +34,6 @@ public interface AppComponent {
    void inject(ADogDeedsActivity aDogDeedsActivity);
 
    void inject(AddADeedActivity addADeedActivity);
+
+   void inject(BaseApplication baseApplication);
 }

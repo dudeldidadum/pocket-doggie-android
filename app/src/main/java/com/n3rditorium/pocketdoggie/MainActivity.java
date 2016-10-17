@@ -17,13 +17,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.n3rditorium.pocketdoggie.dog.DogActivity;
 import com.n3rditorium.pocketdoggie.images.CircleTransformation;
 import com.n3rditorium.pocketdoggie.injection.Injector;
 import com.n3rditorium.pocketdoggie.models.ADogDeedsActivity;
 import com.n3rditorium.pocketdoggie.signin.FirebaseController;
-import com.n3rditorium.pocketdoggie.signin.SignInActivity;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -31,11 +33,15 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity
       implements NavigationView.OnNavigationItemSelectedListener {
 
+   private static final int RC_SIGN_IN = 904;
+   @Inject
+   FirebaseAnalytics firebaseAnalytics;
    @Inject
    FirebaseController firebaseController;
    @Inject
    Picasso picasso;
 
+   private FirebaseAnalytics mFirebaseAnalytics;
 
    @Override
    public void onBackPressed() {
@@ -60,18 +66,33 @@ public class MainActivity extends AppCompatActivity
       // Handle navigation view item clicks here.
       int id = item.getItemId();
 
+      Bundle params = new Bundle();
+      params.putString(FirebaseAnalytics.Param.ITEM_ID, "viewId: " + id);
+
+      String itemName = "";
       if (id == R.id.nav_profile) {
+         itemName = "";
          // Handle the camera action
-         startActivity(new Intent(this, SignInActivity.class));
+         if (FirebaseAuth.getInstance()
+               .getCurrentUser() == null) {
+            startSignIn();
+         } else {
+            // TODO show profile
+         }
       } else if (id == R.id.nav_dog_profile) {
+         itemName = "profile";
          startActivity(new Intent(this, DogActivity.class));
       } else if (id == R.id.nav_deeds) {
+         itemName = "a dog deeds";
          startActivity(new Intent(this, ADogDeedsActivity.class));
       } else if (id == R.id.nav_share) {
-
+         itemName = "share";
       } else if (id == R.id.nav_logout) {
+         itemName = "logout";
          firebaseController.logout();
       }
+      params.putString(FirebaseAnalytics.Param.ITEM_NAME, itemName);
+      firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
 
       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
       drawer.closeDrawer(GravityCompat.START);
@@ -102,12 +123,17 @@ public class MainActivity extends AppCompatActivity
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       setSupportActionBar(toolbar);
 
+      if (getIntent() != null && getIntent().getExtras() != null) {
+         Log.d("PUSH", "contains key1 " + getIntent().getExtras()
+               .containsKey("key1"));
+      }
       firebaseController.init(this);
       firebaseController.onCreate(savedInstanceState);
       firebaseController.getCurrentUser(new FirebaseController.OnUserListener() {
          @Override
          public void notSignedIn() {
-            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+            //            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+            startSignIn();
          }
 
          @Override
@@ -151,6 +177,14 @@ public class MainActivity extends AppCompatActivity
    protected void onStop() {
       super.onStop();
       firebaseController.onStop();
+   }
+
+   private void startSignIn() {
+      startActivityForResult(AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setTheme(R.style.Doggie_SignIn)
+            .setProviders(AuthUI.EMAIL_PROVIDER, AuthUI.GOOGLE_PROVIDER, AuthUI.FACEBOOK_PROVIDER)
+            .build(), RC_SIGN_IN);
    }
 
    private void updateNavigationView(FirebaseUser user) {

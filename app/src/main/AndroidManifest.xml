@@ -45,6 +45,21 @@
       <activity android:name=".dog.deeds.AddADeedActivity"
          android:theme="@style/Doggie.NoActionBar.Translucent.AddADeed">
       </activity>
+
+      <service
+         android:name=".messaging.MyFirebaseMessagingService">
+         <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+         </intent-filter>
+      </service>
+
+      <service
+         android:name=".messaging.MyFirebaseInstanceIdService">
+         <intent-filter>
+            <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+         </intent-filter>
+      </service>
+
    </application>
 
 </manifest>

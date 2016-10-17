@@ -16,7 +16,7 @@ import com.n3rditorium.pocketdoggie.R;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-   private static final String TAG = "MyFirebaseMsgService";
+   private static final String TAG = "PUSH";
 
    /**
     * Called when message is received.
@@ -56,9 +56,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
       if (remoteMessage.getNotification() != null) {
          Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification()
                .getBody());
+         sendNotification(remoteMessage.getNotification()
+               .getBody());
       }
-      sendNotification(remoteMessage.getNotification()
-            .getBody());
 
       // Also if you intend on generating your own notifications as a result of a received FCM
       // message, here is where that should be initiated. See sendNotification method below.
@@ -79,7 +79,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
       Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
       NotificationCompat.Builder notificationBuilder =
             new NotificationCompat.Builder(this).setSmallIcon(R.drawable.ic_menu_paw)
-                  .setContentTitle("FCM Message")
+                  .setContentTitle("Foreground Message")
                   .setContentText(messageBody)
                   .setAutoCancel(true)
                   .setSound(defaultSoundUri)
